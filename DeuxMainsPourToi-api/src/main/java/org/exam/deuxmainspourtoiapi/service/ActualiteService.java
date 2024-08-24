@@ -9,5 +9,5 @@ public interface ActualiteService {
     ActualiteDto updateActualite(ActualiteDto actualiteDto);
     ActualiteDto getActualiteDto(int id);
     List<ActualiteDto> getAllActualiteDtos();
-    void deleteActualite(int id);
+    boolean deleteActualite(int id);
 }
