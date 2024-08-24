@@ -1,11 +1,17 @@
 package org.exam.deuxmainspourtoiapi.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
 public class UtilisateurDto {
+
+    public UtilisateurDto() {
+    }
+
     private Integer id;
     private String pseudo;
     private String email;

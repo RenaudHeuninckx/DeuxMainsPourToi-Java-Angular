@@ -1,6 +1,7 @@
 package org.exam.deuxmainspourtoiapi.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.exam.deuxmainspourtoiapi.entity.Actualite;
 import org.exam.deuxmainspourtoiapi.entity.Evenement;
 import org.exam.deuxmainspourtoiapi.entity.Massage;
@@ -8,8 +9,13 @@ import org.exam.deuxmainspourtoiapi.entity.PackOffre;
 
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
 public class CommentDto {
+
+    public CommentDto() {
+    }
+
     private Integer Id;
     private UtilisateurDto Utilisateur;
     private String commentaire;

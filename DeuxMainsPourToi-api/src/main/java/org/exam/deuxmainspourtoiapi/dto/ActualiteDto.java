@@ -1,13 +1,17 @@
 package org.exam.deuxmainspourtoiapi.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 
-@Data
-@Builder
+@Getter
+@Setter
 public class ActualiteDto {
+
+    public ActualiteDto() {
+    }
+
     private int id;
     private String titre;
     private String descriptionCourte;

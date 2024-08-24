@@ -1,9 +1,15 @@
 package org.exam.deuxmainspourtoiapi.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class EvenementContentDto {
+
+    public EvenementContentDto() {
+    }
+
     private Integer id;
     private EvenementDto evenement;
     private String description;

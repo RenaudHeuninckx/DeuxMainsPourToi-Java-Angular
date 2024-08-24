@@ -1,12 +1,18 @@
 package org.exam.deuxmainspourtoiapi.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 public class PackOffreDto {
+
+    public PackOffreDto() {
+    }
+
     private Integer id;
     private String titre;
     private String descriptionCourte;

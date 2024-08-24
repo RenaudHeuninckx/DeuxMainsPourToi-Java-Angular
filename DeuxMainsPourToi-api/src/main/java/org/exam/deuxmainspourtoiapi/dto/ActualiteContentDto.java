@@ -1,11 +1,15 @@
 package org.exam.deuxmainspourtoiapi.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@Builder
+@Getter
+@Setter
 public class ActualiteContentDto {
+
+    public ActualiteContentDto() {
+    }
+
     private Integer id;
     private ActualiteDto actualite;
     private String description;

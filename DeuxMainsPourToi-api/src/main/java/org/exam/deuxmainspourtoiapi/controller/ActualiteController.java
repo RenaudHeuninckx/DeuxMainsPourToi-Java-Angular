@@ -1,7 +1,6 @@
 package org.exam.deuxmainspourtoiapi.controller;
 
 import org.exam.deuxmainspourtoiapi.dto.ActualiteDto;
-import org.exam.deuxmainspourtoiapi.entity.Actualite;
 import org.exam.deuxmainspourtoiapi.service.ActualiteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
