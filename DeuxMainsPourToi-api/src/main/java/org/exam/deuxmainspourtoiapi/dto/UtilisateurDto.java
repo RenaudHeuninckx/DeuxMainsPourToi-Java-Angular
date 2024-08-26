@@ -15,6 +15,7 @@ public class UtilisateurDto {
     private Integer id;
     private String pseudo;
     private String email;
+    private String password;
     private Boolean newsletter;
     private Boolean admin;
     private LocalDate createdDate;

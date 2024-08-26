@@ -20,27 +20,27 @@ public class ActualiteServiceImpl implements ActualiteService {
     ModelMapper modelMapper;
 
     @Override
-    public ActualiteDto createActualite(ActualiteDto actualiteDto) {
+    public ActualiteDto createActualiteDto(ActualiteDto actualiteDto) {
         Actualite actualite = modelMapper.map(actualiteDto, Actualite.class);
         actualite = actualiteRepository.save(actualite);
         return modelMapper.map(actualite, ActualiteDto.class);
     }
 
     @Override
-    public ActualiteDto updateActualite(ActualiteDto actualiteDto) {
+    public ActualiteDto updateActualiteDto(ActualiteDto actualiteDto) {
         Actualite actualite = modelMapper.map(actualiteDto, Actualite.class);
         actualite = actualiteRepository.save(actualite);
         return modelMapper.map(actualite, ActualiteDto.class);
     }
 
     @Override
-    public ActualiteDto getActualiteDto(int id) {
+    public ActualiteDto getActualiteDtoById(int id) {
         Actualite actualite = actualiteRepository.findById(id).orElse(null);
         return modelMapper.map(actualite, ActualiteDto.class);
     }
 
     @Override
-    public List<ActualiteDto> getAllActualiteDtos() {
+    public List<ActualiteDto> getAllActualiteDto() {
         Iterable<Actualite> actualites = actualiteRepository.findAll();
         return StreamSupport
                 .stream(actualites.spliterator(),false)
@@ -49,13 +49,12 @@ public class ActualiteServiceImpl implements ActualiteService {
     }
 
     @Override
-    public boolean deleteActualite(int id) {
+    public boolean deleteActualiteDtoById(int id) {
         try {
             actualiteRepository.deleteById(id);
             return true;
         } catch (Exception e) {
             return false;
         }
-
     }
 }

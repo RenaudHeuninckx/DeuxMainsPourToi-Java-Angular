@@ -17,35 +17,35 @@ public class ActualiteController {
 
     @PostMapping("/create")
     public ResponseEntity<ActualiteDto> createActualite(@RequestBody ActualiteDto actualiteDto) {
-        actualiteDto = actualiteServiceImpl.createActualite(actualiteDto);
+        actualiteDto = actualiteServiceImpl.createActualiteDto(actualiteDto);
         return ResponseEntity.ok().body(actualiteDto);
     }
 
     @PutMapping("/update")
     public ResponseEntity<ActualiteDto> updateActualite(@RequestBody ActualiteDto actualiteDto) {
-        actualiteDto = actualiteServiceImpl.updateActualite(actualiteDto);
+        actualiteDto = actualiteServiceImpl.updateActualiteDto(actualiteDto);
         return ResponseEntity.ok().body(actualiteDto);
     }
 
     @GetMapping("/get/{id}")
     public ResponseEntity<ActualiteDto> getActualiteById(@PathVariable int id) {
-        ActualiteDto actualiteDto = actualiteServiceImpl.getActualiteDto(id);
+        ActualiteDto actualiteDto = actualiteServiceImpl.getActualiteDtoById(id);
         return ResponseEntity.ok().body(actualiteDto);
     }
 
     @GetMapping("/")
     public ResponseEntity<List<ActualiteDto>> getAllActualites() {
-        List<ActualiteDto> actualiteDtos = actualiteServiceImpl.getAllActualiteDtos();
+        List<ActualiteDto> actualiteDtos = actualiteServiceImpl.getAllActualiteDto();
         return ResponseEntity.ok().body(actualiteDtos);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteActualiteById(@PathVariable int id) {
-        boolean deleted = actualiteServiceImpl.deleteActualite(id);
+        boolean deleted = actualiteServiceImpl.deleteActualiteDtoById(id);
         if (deleted) {
             return ResponseEntity.ok().body("Actualite " + id + " deleted");
         } else {
-            return ResponseEntity.badRequest().body("Actualite " + id + " delete error");
+            return ResponseEntity.badRequest().body("Actualite " + id + " delete failed");
         }
     }
 }

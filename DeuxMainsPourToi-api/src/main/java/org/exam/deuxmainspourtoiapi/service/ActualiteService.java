@@ -5,9 +5,9 @@ import org.exam.deuxmainspourtoiapi.dto.ActualiteDto;
 import java.util.List;
 
 public interface ActualiteService {
-    ActualiteDto createActualite(ActualiteDto actualiteDto);
-    ActualiteDto updateActualite(ActualiteDto actualiteDto);
-    ActualiteDto getActualiteDto(int id);
-    List<ActualiteDto> getAllActualiteDtos();
-    boolean deleteActualite(int id);
+    ActualiteDto createActualiteDto(ActualiteDto actualiteDto);
+    ActualiteDto updateActualiteDto(ActualiteDto actualiteDto);
+    ActualiteDto getActualiteDtoById(int id);
+    List<ActualiteDto> getAllActualiteDto();
+    boolean deleteActualiteDtoById(int id);
 }

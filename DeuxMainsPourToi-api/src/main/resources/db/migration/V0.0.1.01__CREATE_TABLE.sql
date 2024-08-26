@@ -107,6 +107,7 @@ CREATE TABLE utilisateur
     Id           int AUTO_INCREMENT PRIMARY KEY,
     Pseudo       nvarchar(255)  NOT NULL,
     Email        nvarchar(1024) NOT NULL,
+    Password     nvarchar(1024)  NOT NULL,
     Newsletter   bit            NOT NULL DEFAULT false,
     Admin        bit            NOT NULL DEFAULT false,
     CreatedDate  datetime       NOT NULL,
