@@ -8,6 +8,9 @@ public interface UtilisateurService {
     UtilisateurDto createUtilisateurDto(UtilisateurDto utilisateurDto);
     UtilisateurDto updateUtilisateurDto(UtilisateurDto utilisateurDto);
     UtilisateurDto getUtilisateurDtoById(int id);
+    UtilisateurDto getUtilisateurDtoByEmail(String email);
+    boolean isEmailExist(String email);
+    boolean isPseudoExist(String pseudo);
     List<UtilisateurDto> getAllUtilisateurDto();
     boolean deleteUtilisateurDtoById(int id);
 }
