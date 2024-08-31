@@ -1,0 +1,35 @@
+<header class="p-3 text-bg-dark">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <h1>Deux mains pour toi</h1>
+      </a>
+    </div>
+    <div>
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a routerLink="home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accueil</a></li>
+        <li><a routerLink="espaceDetente" routerLinkActive="active">Espace détente</a></li>
+        <li><a routerLink="massage" routerLinkActive="active">Massage</a></li>
+        <li><a routerLink="packOffre" routerLinkActive="active">Pack-offre</a></li>
+        <li><a routerLink="evenement" routerLinkActive="active">Evenement</a></li>
+        <li><a routerLink="actualite" routerLinkActive="active">Actualité</a></li>
+        <li><a routerLink="presse" routerLinkActive="active">Presse</a></li>
+      </ul>
+
+      <div class="text-end mt-2">
+        @if (!loggedIn) {
+        <button (click)="connexion()" class="btn btn-warning me-2">Connexion</button>
+        }
+        @if (!loggedIn) {
+        <button (click)="enregistrement()" class="btn btn-outline-light">Enregistrement</button>
+        }
+        @if (loggedIn) {
+        <button (click)="deconnexion()" class="btn btn-outline-light me-2">Déconnexion</button>
+        }
+        @if (loggedIn) {
+        <button (click)="monCompte()" class="btn btn-warning">Mon compte</button>
+        }
+      </div>
+    </div>
+  </div>
+</header>

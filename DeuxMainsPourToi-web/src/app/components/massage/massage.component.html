@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <h1>Massages</h1>
+      <div *ngIf="isError, else showMassages">
+        <div class="alert alert-danger">{{ errorMessage }}</div>
+      </div>
+      <ng-template #showMassages>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Titre</th>
+                <th>Type</th>
+                <th>Style</th>
+                <th>Durée</th>
+                <th>Prix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let massage of massages" (click)="selectMassage(massage)">
+                <td>{{ massage.titre }}</td>
+                <td>{{ massage.type }}</td>
+                <td>{{ massage.descriptionCourte }}</td>
+                <td>{{ massage.duree }}</td>
+                <td>{{ massage.prix | currency: 'EUR' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-template>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+</div>

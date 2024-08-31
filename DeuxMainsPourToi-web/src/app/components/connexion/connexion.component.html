@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="login-container col-sm-6">
+      <form (ngSubmit)="onSubmitForm()">
+        <h2>Connexion</h2>
+        <div class="form-outline mb-4">
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" id="email" name="email" [(ngModel)]="email" class="form-control" required email
+            #emailCheck="ngModel" />
+          @if (emailCheck.invalid && emailCheck.touched) {<div>
+            @if (emailCheck.errors?.['required']) {<small>L'email est requis.</small>}
+            @if (emailCheck.errors?.['email']) {<small>L'email doit être valide.</small>}
+          </div>}
+        </div>
+        <div class="form-outline mb-4">
+          <label for="password" class="form-label">Mot de passe:</label>
+          <input type="password" id="password" name="password" [(ngModel)]="password" class="form-control" required
+            password #passwordCheck="ngModel" />
+          @if (passwordCheck.invalid && passwordCheck.touched) {<div>
+            @if (passwordCheck.errors?.['required']) {<small>Le mot de passe est requis.</small>}
+          </div>}
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mb-4">Se connecter</button>
+        @if (errorMessage) {
+        <div class="alert alert-danger">{{ errorMessage }}</div>
+        }
+      </form>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+</div>
