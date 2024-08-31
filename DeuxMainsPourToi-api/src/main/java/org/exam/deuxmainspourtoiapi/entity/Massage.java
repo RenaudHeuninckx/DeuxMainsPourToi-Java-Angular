@@ -42,7 +42,4 @@ public class Massage {
     @Column(name = "Rang", nullable = false)
     private Integer rang;
 
-    @OneToMany(mappedBy = "massage")
-    private Set<Comment> comments;
-
 }

@@ -35,7 +35,4 @@ public class Actualite {
     @OneToMany(mappedBy = "actualite")
     private Set<ActualiteContent> actualiteContents;
 
-    @OneToMany(mappedBy = "actualite")
-    private Set<Comment> comments;
-
 }

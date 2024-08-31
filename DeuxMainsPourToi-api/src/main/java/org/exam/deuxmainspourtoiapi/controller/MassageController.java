@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/massage")
 public class MassageController {
@@ -15,13 +16,13 @@ public class MassageController {
     @Autowired
     MassageServiceImpl massageServiceImpl;
 
-    @PostMapping("/create")
+    @PostMapping("/admin/create")
     ResponseEntity<MassageDto> createMassageDto(@RequestBody MassageDto massageDto) {
         massageDto = massageServiceImpl.createMassageDto(massageDto);
         return ResponseEntity.ok().body(massageDto);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/admin/update")
     ResponseEntity<MassageDto> updateMassageDto(@RequestBody MassageDto massageDto) {
         massageDto = massageServiceImpl.updateMassageDto(massageDto);
         return ResponseEntity.ok().body(massageDto);
@@ -39,7 +40,7 @@ public class MassageController {
         return ResponseEntity.ok().body(massageDto);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/admin/delete/{id}")
     ResponseEntity<String> deleteMassageDtoById(@PathVariable("id") int id) {
         boolean deleted = massageServiceImpl.deleteMassageDtoById(id);
         if (deleted) {

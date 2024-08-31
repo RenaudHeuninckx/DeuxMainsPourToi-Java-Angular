@@ -3,11 +3,12 @@ package org.exam.deuxmainspourtoiapi.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.security.Principal;
 import java.time.LocalDate;
 
 @Getter
 @Setter
-public class UtilisateurDto {
+public class UtilisateurDto implements Principal {
 
     public UtilisateurDto() {
     }
@@ -21,4 +22,9 @@ public class UtilisateurDto {
     private LocalDate createdDate;
     private LocalDate modifiedDate;
     private LocalDate deletedDate;
+
+    @Override
+    public String getName() {
+        return this.email;
+    }
 }

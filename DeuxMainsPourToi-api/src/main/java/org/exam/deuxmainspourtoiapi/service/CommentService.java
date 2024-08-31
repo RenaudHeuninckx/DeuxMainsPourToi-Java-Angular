@@ -9,5 +9,6 @@ public interface CommentService {
     CommentDto updateCommentDto(CommentDto commentDto);
     CommentDto getCommentDtoById(int id);
     List<CommentDto> getAllCommentDto();
+    List<CommentDto> getCommentDtoByMassageId(int massageId);
     boolean deleteCommentDtoById(int id);
 }

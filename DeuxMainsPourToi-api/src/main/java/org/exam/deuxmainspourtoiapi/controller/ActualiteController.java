@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/actualite")
 public class ActualiteController {
@@ -15,13 +16,13 @@ public class ActualiteController {
     @Autowired
     ActualiteServiceImpl actualiteServiceImpl;
 
-    @PostMapping("/create")
+    @PostMapping("/admin/create")
     public ResponseEntity<ActualiteDto> createActualite(@RequestBody ActualiteDto actualiteDto) {
         actualiteDto = actualiteServiceImpl.createActualiteDto(actualiteDto);
         return ResponseEntity.ok().body(actualiteDto);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/admin/update")
     public ResponseEntity<ActualiteDto> updateActualite(@RequestBody ActualiteDto actualiteDto) {
         actualiteDto = actualiteServiceImpl.updateActualiteDto(actualiteDto);
         return ResponseEntity.ok().body(actualiteDto);
@@ -39,7 +40,7 @@ public class ActualiteController {
         return ResponseEntity.ok().body(actualiteDtos);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/admin/delete/{id}")
     public ResponseEntity<String> deleteActualiteById(@PathVariable int id) {
         boolean deleted = actualiteServiceImpl.deleteActualiteDtoById(id);
         if (deleted) {

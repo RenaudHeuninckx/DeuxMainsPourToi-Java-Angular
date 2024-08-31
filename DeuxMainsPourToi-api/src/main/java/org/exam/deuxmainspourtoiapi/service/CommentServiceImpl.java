@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 @Service
@@ -44,7 +45,16 @@ public class CommentServiceImpl implements CommentService {
         Iterable<Comment> comments = commentRepository.findAll();
         return StreamSupport
                 .stream(comments.spliterator(),false)
-                .map(c-> modelMapper.map(comments, CommentDto.class))
+                .map(c-> modelMapper.map(c, CommentDto.class))
+                .toList();
+    }
+
+    @Override
+    public List<CommentDto> getCommentDtoByMassageId(int massageId) {
+        Iterable<Comment> comments = commentRepository.findByMassageId(massageId);
+        return StreamSupport
+                .stream(comments.spliterator(),false)
+                .map(c-> modelMapper.map(c, CommentDto.class))
                 .toList();
     }
 

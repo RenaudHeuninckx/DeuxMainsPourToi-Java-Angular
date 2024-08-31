@@ -36,7 +36,4 @@ public class PackOffre {
     @Column(name = "Displayed", nullable = false)
     private Boolean displayed = false;
 
-    @OneToMany(mappedBy = "packOffre")
-    private Set<Comment> comments;
-
 }

@@ -87,7 +87,7 @@ CREATE TABLE pack_offre
     DescriptionCourte nvarchar(255)  NOT NULL,
     Description       nvarchar(2048) NOT NULL,
     prix              decimal(5,2)  NOT NULL,
-    Image             nvarchar(1024)  NOT NULL,
+    Image             nvarchar(1024),
     Rang              int            NOT NULL,
     Displayed         bit            NOT NULL
 );
@@ -126,25 +126,5 @@ CREATE TABLE comment
     PackOffreId   int,
     Creation_date datetime       NOT NULL,
     ModifiedDate  datetime       NOT NULL,
-    DeletedDate   datetime,
-    CONSTRAINT FK_comment_actualite
-        FOREIGN KEY (ActualiteId)
-            REFERENCES actualite (Id)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-    CONSTRAINT FK_comment_evenement
-        FOREIGN KEY (EvenementId)
-            REFERENCES evenement (Id)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-    CONSTRAINT FK_comment_massage
-        FOREIGN KEY (MassageId)
-            REFERENCES massage (Id)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-    CONSTRAINT FK_comment_pack_offre
-        FOREIGN KEY (PackOffreId)
-            REFERENCES pack_offre (Id)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE
+    DeletedDate   datetime
 );

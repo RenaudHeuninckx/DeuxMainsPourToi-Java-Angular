@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/actualitecontent")
 public class ActualiteContentController {
@@ -15,13 +16,13 @@ public class ActualiteContentController {
     @Autowired
     ActualiteContentServiceImpl actualiteContentServiceImpl;
 
-    @PostMapping("/create")
+    @PostMapping("/admin/create")
     public ResponseEntity<ActualiteContentDto> createActualiteContent(@RequestBody ActualiteContentDto actualiteContentDto) {
         actualiteContentDto = actualiteContentServiceImpl.createActualiteContentDto(actualiteContentDto);
         return ResponseEntity.ok().body(actualiteContentDto);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/admin/update")
     public ResponseEntity<ActualiteContentDto> updateActualiteContent(@RequestBody ActualiteContentDto actualiteContentDto) {
         actualiteContentDto = actualiteContentServiceImpl.updateActualiteContentDto(actualiteContentDto);
         return ResponseEntity.ok().body(actualiteContentDto);
@@ -39,7 +40,7 @@ public class ActualiteContentController {
         return ResponseEntity.ok().body(actualiteContentDtos);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/admin/delete/{id}")
     public ResponseEntity<String> deleteActualiteContentById(@PathVariable int id) {
         boolean deleted = actualiteContentServiceImpl.deleteActualiteContentDtoById(id);
         if (deleted) {

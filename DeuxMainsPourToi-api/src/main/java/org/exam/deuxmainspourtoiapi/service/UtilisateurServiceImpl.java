@@ -5,9 +5,6 @@ import org.exam.deuxmainspourtoiapi.entity.Utilisateur;
 import org.exam.deuxmainspourtoiapi.repository.UtilisateurRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -23,13 +20,10 @@ public class UtilisateurServiceImpl implements UtilisateurService{
     @Autowired
     ModelMapper modelMapper;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
 
     @Override
     public UtilisateurDto createUtilisateurDto(UtilisateurDto utilisateurDto) {
         Utilisateur utilisateur = modelMapper.map(utilisateurDto, Utilisateur.class);
-        utilisateur.setPassword(passwordEncoder.encode(utilisateurDto.getPassword()));
         utilisateur.setCreatedDate(LocalDate.now());
         utilisateur.setModifiedDate(LocalDate.now());
         utilisateur = utilisateurRepository.save(utilisateur);
@@ -39,7 +33,6 @@ public class UtilisateurServiceImpl implements UtilisateurService{
     @Override
     public UtilisateurDto updateUtilisateurDto(UtilisateurDto utilisateurDto) {
         Utilisateur utilisateur = modelMapper.map(utilisateurDto, Utilisateur.class);
-        utilisateur.setPassword(passwordEncoder.encode(utilisateurDto.getPassword()));
         utilisateur.setModifiedDate(LocalDate.now());
         utilisateur = utilisateurRepository.save(utilisateur);
         return modelMapper.map(utilisateur, UtilisateurDto.class);
@@ -88,8 +81,4 @@ public class UtilisateurServiceImpl implements UtilisateurService{
         }
     }
 
-    public GrantedAuthority getAuthority(UtilisateurDto utilisateurDto){
-        if (utilisateurDto.getAdmin()) return new SimpleGrantedAuthority("ROLE_ADMIN");
-        else return new SimpleGrantedAuthority("ROLE_USER");
-    }
 }

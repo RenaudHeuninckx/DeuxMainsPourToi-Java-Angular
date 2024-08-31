@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/comment")
 public class CommentController {
@@ -36,6 +37,12 @@ public class CommentController {
     @GetMapping("/")
     public ResponseEntity<List<CommentDto>> getAllComments() {
         List<CommentDto> commentDtos = commentServiceImpl.getAllCommentDto();
+        return ResponseEntity.ok().body(commentDtos);
+    }
+
+    @GetMapping("/massage/{id}")
+    public ResponseEntity<List<CommentDto>> getCommentsByMassageId(@PathVariable int id) {
+        List<CommentDto> commentDtos = commentServiceImpl.getCommentDtoByMassageId(id);
         return ResponseEntity.ok().body(commentDtos);
     }
 

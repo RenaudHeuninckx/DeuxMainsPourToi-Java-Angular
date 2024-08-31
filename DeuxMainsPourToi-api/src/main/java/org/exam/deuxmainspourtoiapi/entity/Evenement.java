@@ -27,9 +27,6 @@ public class Evenement {
     private Boolean displayed;
 
     @OneToMany(mappedBy = "evenement")
-    private Set<Comment> comments;
-
-    @OneToMany(mappedBy = "evenement")
     private Set<EvenementContent> evenementContents;
 
 }

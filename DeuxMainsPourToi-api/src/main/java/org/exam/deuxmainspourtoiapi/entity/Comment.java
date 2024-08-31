@@ -22,25 +22,17 @@ public class Comment {
     @Column(name = "Commentaire", nullable = false, length = 2048)
     private String commentaire;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "ActualiteId")
-    private Actualite actualite;
+    @Column(name = "ActualiteId")
+    private Integer actualiteId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "EvenementId")
-    private Evenement evenement;
+    @Column(name = "EvenementId")
+    private Integer evenementId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "MassageId")
-    private Massage massage;
+    @Column(name = "MassageId")
+    private Integer massageId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "PackOffreId")
-    private PackOffre packOffre;
+    @Column(name = "PackOffreId")
+    private Integer packOffreId;
 
     @Column(name = "Creation_date", nullable = false)
     private LocalDate creationDate;

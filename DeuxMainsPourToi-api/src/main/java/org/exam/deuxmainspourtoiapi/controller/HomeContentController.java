@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/homecontent")
 public class HomeContentController {
@@ -15,13 +16,13 @@ public class HomeContentController {
     @Autowired
     HomeContentServiceImpl homeContentServiceImpl;
 
-    @PostMapping("/create")
+    @PostMapping("/admin/create")
     public ResponseEntity<HomeContentDto> createHomeContent(@RequestBody HomeContentDto homeContentDto) {
         homeContentDto = homeContentServiceImpl.createHomeContentDto(homeContentDto);
         return ResponseEntity.ok().body(homeContentDto);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/admin/update")
     public ResponseEntity<HomeContentDto> updateHomeContent(@RequestBody HomeContentDto homeContentDto) {
         homeContentDto = homeContentServiceImpl.updateHomeContentDto(homeContentDto);
         return ResponseEntity.ok().body(homeContentDto);
@@ -39,7 +40,7 @@ public class HomeContentController {
         return ResponseEntity.ok().body(homeContentDtos);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/admin/delete/{id}")
     public ResponseEntity<String> deleteHomeContent(@PathVariable int id) {
         boolean deleted = homeContentServiceImpl.deleteHomeContentDtoById(id);
         if (deleted) {

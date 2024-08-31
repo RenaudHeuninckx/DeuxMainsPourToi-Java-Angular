@@ -17,12 +17,12 @@ public class CommentDto {
     }
 
     private Integer Id;
-    private UtilisateurDto Utilisateur;
+    private Integer Utilisateur;
     private String commentaire;
-    private Actualite actualite;
-    private Evenement evenement;
-    private Massage massage;
-    private PackOffre packOffre;
+    private Integer actualiteId;
+    private Integer evenementId;
+    private Integer massageId;
+    private Integer packOffreId;
     private LocalDate creationDate;
     private LocalDate modifiedDate;
     private LocalDate deletedDate;

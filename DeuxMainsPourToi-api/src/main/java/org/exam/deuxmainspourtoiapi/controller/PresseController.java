@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/presse")
 public class PresseController {
@@ -15,13 +16,13 @@ public class PresseController {
     @Autowired
     PresseServiceImpl presseServiceImpl;
 
-    @PostMapping("/create")
+    @PostMapping("/admin/create")
     public ResponseEntity<PresseDto> createPresse(@RequestBody PresseDto presseDto) {
         presseDto = presseServiceImpl.createPresseDto(presseDto);
         return ResponseEntity.ok().body(presseDto);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/admin/update")
     public ResponseEntity<PresseDto> updatePresse(@RequestBody PresseDto presseDto) {
         presseDto = presseServiceImpl.updatePresseDto(presseDto);
         return ResponseEntity.ok().body(presseDto);
@@ -39,7 +40,7 @@ public class PresseController {
         return ResponseEntity.ok().body(presseDtos);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/admin/delete/{id}")
     public ResponseEntity<String> deletePresse(@PathVariable int id) {
         boolean deleted = presseServiceImpl.deletePresseDtoById(id);
         if (deleted) {

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/espacedetente")
 public class EspaceDetenteController {
@@ -15,13 +16,13 @@ public class EspaceDetenteController {
     @Autowired
     EspaceDetenteServiceImpl espaceDetenteServiceImpl;
 
-    @PostMapping("/create")
+    @PostMapping("/admin/create")
     public ResponseEntity<EspaceDetenteDto> createEspaceDetente(@RequestBody EspaceDetenteDto espaceDetenteDto) {
         espaceDetenteDto = espaceDetenteServiceImpl.createEspaceDetenteDto(espaceDetenteDto);
         return ResponseEntity.ok().body(espaceDetenteDto);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/admin/update")
     public ResponseEntity<EspaceDetenteDto> updateEspaceDetente(@RequestBody EspaceDetenteDto espaceDetenteDto) {
         espaceDetenteDto = espaceDetenteServiceImpl.updateEspaceDetenteDto(espaceDetenteDto);
         return ResponseEntity.ok().body(espaceDetenteDto);
@@ -39,7 +40,7 @@ public class EspaceDetenteController {
         return ResponseEntity.ok().body(espaceDetenteDtos);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/admin/delete/{id}")
     public ResponseEntity<String> deleteEspaceDetente(@PathVariable int id) {
         boolean deleted = espaceDetenteServiceImpl.deleteEspaceDetenteDtoById(id);
         if (deleted) {

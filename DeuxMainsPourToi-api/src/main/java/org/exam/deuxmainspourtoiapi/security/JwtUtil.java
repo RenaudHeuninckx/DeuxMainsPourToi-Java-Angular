@@ -4,11 +4,11 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.exam.deuxmainspourtoiapi.dto.UtilisateurDto;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 @Component
@@ -18,6 +18,10 @@ public class JwtUtil {
 
     public String generateToken(UtilisateurDto utilisateurDto) {
         Map<String, Object> claims = new HashMap<>();
+        GrantedAuthority grantedAuthority = utilisateurDto.getAdmin() ? new SimpleGrantedAuthority("ADMIN") : new SimpleGrantedAuthority("USER");
+        claims.put("roles", Collections.singletonList(grantedAuthority));
+        claims.put("Id", utilisateurDto.getId());
+        claims.put("pseudo", utilisateurDto.getPseudo());
         return createToken(claims, utilisateurDto.getEmail());
     }
 
@@ -32,6 +36,7 @@ public class JwtUtil {
     }
 
     public Boolean validateToken(String token, UtilisateurDto utilisateurDto) {
+        System.out.println("validateToken");
         final String email = extractSubject(token);
         return (email.equals(utilisateurDto.getEmail()) && !isTokenExpired(token));
     }
@@ -51,6 +56,14 @@ public class JwtUtil {
     public <T> T extractClaim(String token, Function<Claims, T> claimResolver) {
         final Claims claims = extractAllClaims(token);
         return claimResolver.apply(claims);
+    }
+
+    public List<String> extractRoles(String token) {
+        Claims claims = extractAllClaims(token);
+        List<Map<String, String>> rolesMap = claims.get("roles", List.class);
+        return rolesMap.stream()
+                .map(map -> map.get("authority"))
+                .toList();
     }
 
     public Claims extractAllClaims(String token) {

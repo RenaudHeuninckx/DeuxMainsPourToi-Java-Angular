@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/evenementcontent")
 public class EvenementContentController {
@@ -15,13 +16,13 @@ public class EvenementContentController {
     @Autowired
     private EvenementContentServiceImpl evenementContentServiceImpl;
 
-    @PostMapping("/create")
+    @PostMapping("/admin/create")
     public ResponseEntity<EvenementContentDto> createEvenementContent(@RequestBody EvenementContentDto evenementContentDto) {
         evenementContentDto = evenementContentServiceImpl.createEvenementContentDto(evenementContentDto);
         return ResponseEntity.ok().body(evenementContentDto);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/admin/update")
     public ResponseEntity<EvenementContentDto> updateEvenementContent(@RequestBody EvenementContentDto evenementContentDto) {
         evenementContentDto = evenementContentServiceImpl.updateEvenementContentDto(evenementContentDto);
         return ResponseEntity.ok().body(evenementContentDto);
@@ -39,7 +40,7 @@ public class EvenementContentController {
         return ResponseEntity.ok().body(evenementContentDtos);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/admin/delete/{id}")
     public ResponseEntity<String> deleteEvenementContent(@PathVariable int id) {
         boolean deleted = evenementContentServiceImpl.deleteEvenementContentDtoById(id);
         if (deleted) {

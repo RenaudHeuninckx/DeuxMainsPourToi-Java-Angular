@@ -25,7 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Utilisateur utilisateur = utilisateurRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username));
-        SimpleGrantedAuthority authority = utilisateur.getAdmin() ? new SimpleGrantedAuthority("ROLE_ADMIN") : new SimpleGrantedAuthority("ROLE_USER");
+        SimpleGrantedAuthority authority = utilisateur.getAdmin() ? new SimpleGrantedAuthority("ADMIN") : new SimpleGrantedAuthority("USER");
         List<SimpleGrantedAuthority> authorities = Collections.singletonList(authority);
         boolean enabled = (Objects.isNull(utilisateur.getDeletedDate()) || utilisateur.getDeletedDate().isAfter(LocalDate.now()));
         return new User(

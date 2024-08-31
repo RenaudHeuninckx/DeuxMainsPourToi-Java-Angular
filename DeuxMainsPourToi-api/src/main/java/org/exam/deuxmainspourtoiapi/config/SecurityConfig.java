@@ -1,36 +1,49 @@
 package org.exam.deuxmainspourtoiapi.config;
 
 import org.exam.deuxmainspourtoiapi.repository.UtilisateurRepository;
+import org.exam.deuxmainspourtoiapi.security.CustomAccessDeniedHandler;
 import org.exam.deuxmainspourtoiapi.security.CustomUserDetailsService;
+import org.exam.deuxmainspourtoiapi.security.JwtFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import static javax.management.Query.and;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 public class SecurityConfig {
+
+    JwtFilter jwtFilter;
 
     UtilisateurRepository utilisateurRepository;
 
-    public SecurityConfig(UtilisateurRepository utilisateurRepository) {
+    CustomAccessDeniedHandler customAccessDeniedHandler;
+
+    public SecurityConfig(JwtFilter jwtFilter,UtilisateurRepository utilisateurRepository, CustomAccessDeniedHandler customAccessDeniedHandler) {
+        this.jwtFilter = jwtFilter;
         this.utilisateurRepository = utilisateurRepository;
+        this.customAccessDeniedHandler = customAccessDeniedHandler;
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-            .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/isnewemail/*", "/api/auth/isnewpseudo/*").permitAll()
-            .anyRequest().authenticated()
-            .and()
-            .httpBasic(Customizer.withDefaults())
-            .csrf(csrf -> csrf.disable());
+        http.authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/api/**")
+                        .permitAll())
+                .exceptionHandling(exceptionHandling -> exceptionHandling.accessDeniedHandler(customAccessDeniedHandler))
+                .httpBasic(Customizer.withDefaults())
+                .csrf(csrf -> csrf.disable());
 
         return http.build();
     }

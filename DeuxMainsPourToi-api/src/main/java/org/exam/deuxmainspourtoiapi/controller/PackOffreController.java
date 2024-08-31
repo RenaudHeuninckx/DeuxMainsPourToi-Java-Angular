@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/packoffre")
 public class PackOffreController {
@@ -15,13 +16,13 @@ public class PackOffreController {
     @Autowired
     PackOffreServiceImpl packOffreServiceImpl;
 
-    @PostMapping("/create")
+    @PostMapping("/admin/create")
     public ResponseEntity<PackOffreDto> createPackOffre(@RequestBody PackOffreDto packOffreDto) {
         packOffreDto = packOffreServiceImpl.createPackOffreDto(packOffreDto);
         return ResponseEntity.ok().body(packOffreDto);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/admin/update")
     public ResponseEntity<PackOffreDto> updatePackOffre(@RequestBody PackOffreDto packOffreDto) {
         packOffreDto = packOffreServiceImpl.updatePackOffreDto(packOffreDto);
         return ResponseEntity.ok().body(packOffreDto);
@@ -39,7 +40,7 @@ public class PackOffreController {
         return ResponseEntity.ok().body(packOffreDtos);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/admin/delete/{id}")
     public ResponseEntity<String> deletePackOffreById(@PathVariable int id) {
         boolean deleted = packOffreServiceImpl.deletePackOffreDtoById(id);
         if (deleted) {
